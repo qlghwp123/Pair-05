@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
+{% load django_bootstrap5 %}
 
 {% block content %}
+
 {% if request.user in review.like_users.all %}
-<i id="like-btn" style="color: red;" class="hart bi bi-heart-fill"></i>
+{% comment %} <i id="like-btn" style="color: red;" class="hart bi bi-heart-fill"></i> {% endcomment %}
 {% else %}
-<i id="like-btn" style="color:red;" class="hart bi bi-heart"></i>
+{% comment %} <i id="like-btn" style="color:red;" class="hart bi bi-heart"></i> {% endcomment %}
 {% endif %}
-
-
-
 
 {% endblock %}
