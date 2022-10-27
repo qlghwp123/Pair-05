@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
-    reviews = Review.objects.order_by("-pk")
+    reviews = Review.objects.order_by("pk")
     context = {
         "reviews": reviews,
     }
@@ -64,3 +64,13 @@ def delete(request, pk):
     if request.user == review.user:
         review.delete()
         return redirect("reviews:index")
+
+
+def like(request, pk):
+    review = Review.objects.get(pk=pk)
+    if review.like_users.filter(pk=request.user.pk).exists():
+        review.like_users.remove(request.user)
+    else:
+        review.like_users.add(request.user)
+
+    return redirect("reviews:detail", pk)

@@ -5,7 +5,7 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type='submit' content='login' %}
-    <a href="{% url 'accounts:sigup' %}">회원가입</a>
+    <a href="{% url 'accounts:signup' %}">회원가입</a>
   </form>
 
 {% endblock content %}

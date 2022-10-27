@@ -24,10 +24,10 @@
             </li>
             {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'acoounts:create' %}">작성</a>
+                <a class="nav-link" href="{% url 'reviews:create' %}">작성</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'acoounts:detail' %}">마이페이지</a>
+                <a class="nav-link" href="{% url 'accounts:detail' request.user.id %}">마이페이지</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
