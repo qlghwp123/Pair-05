@@ -9,18 +9,19 @@
     {{ user.followings.count }}
     | 팔로워 :
     {{ user.followers.count }}</p>
+
   {% if request.user.is_authenticated %}
     {% if request.user != user %}
       <a href="{% url 'accounts:follow' user.pk %}">
         {% if request.user in user.followers.all %}
-          <a href="{% url 'accounts:follow' request.user.id %}">팔로우 취소</a>
+          <p class="btn btn-outline-danger">팔로우 취소</p>
         {% else %}
-          <a href="{% url 'accounts:follow' request.user.id %}">팔로우</a>
+          <p class="btn btn-outline-success">팔로우</p>
         {% endif %}
       </a>
     {% endif %}
   {% else %}
-      <a href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+    <a class="my-3 btn btn-outline-secondary" href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
   {% endif %}
   <p>first-name :
     {{ user.last_name }}</p>
