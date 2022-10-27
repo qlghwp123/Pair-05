@@ -67,7 +67,7 @@ def detail(request, user_pk):
     context = {
         "user": user,
     }
-    return render(request, "account/detail.html", context)
+    return render(request, "accounts/detail.html", context)
 
 @login_required
 def follow(request, user_pk):
