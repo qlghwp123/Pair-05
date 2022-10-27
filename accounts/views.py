@@ -34,6 +34,23 @@ def login(request):
             auth_login(request, form.get_user())
             return redirect(request.GET.get("next") or "reviews:index")
 
+def logout(request):
+    auth_logout(request)
+    return redirect("accounts:index")
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('reviews:index')
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {"form": form}
+    return render(request, "accounts/change_password.html", context)
+
+
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
 
