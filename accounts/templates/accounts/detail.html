@@ -1,12 +1,28 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  <h1>{{ user.username }}의 페이지</h1>
-  <p>first-name :
-    {{ user.last_name }}</p>
-  <p>last-name :
-    {{ user.first_name }}</p>
-  <p>e-mail :
-    {{ user.email }}</p>
+  <h1>{{ user.username }}의 프로필</h1>
+  <p>팔로우 :
+    {{ user.followings.count }}
+    | 팔로워 :
+    {{ user.followers.count }}</p>
+  {% if request.user.is_authenticated %}
+    {% if request.user != user %}
+      <a href="{% url 'accounts:follow' user.pk %}">
+        {% if request.user in user.followers.all %}
+          <p>팔로우 취소</p>
+        {% else %}
+          <p>팔로우</p>
+        {% endif %}
+      </a>
+    {% else %}
+      <a href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+    {% endif %}
+    <p>first-name :
+      {{ user.last_name }}</p>
+    <p>last-name :
+      {{ user.first_name }}</p>
+    <p>e-mail :
+      {{ user.email }}</p>
 
-{% endblock content %}
+  {% endblock content %}
