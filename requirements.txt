@@ -3,3 +3,6 @@ Django==3.2.13
 django-bootstrap5==22.1
 pytz==2022.5
 sqlparse==0.4.3
+django-imagekit==4.1.0
+pilkit==2.0
+Pillow==9.2.0
