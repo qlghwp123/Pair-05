@@ -46,18 +46,18 @@ def logout(request):
     auth_logout(request)
     return redirect("reviews:index")
 
-@login_required
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect('reviews:index')
-    else:
-        form = PasswordChangeForm(request.user)
-    context = {"form": form}
-    return render(request, "accounts/change_password.html", context)
+# @login_required
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             form.save()
+#             update_session_auth_hash(request, form.user)
+#             return redirect('reviews:index')
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     context = {"form": form}
+#     return render(request, "accounts/change_password.html", context)
 
 
 @login_required
