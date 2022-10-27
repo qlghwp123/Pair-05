@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  <p>{{ user.username }}</p>
-  <p>{{ user.email }}</p>
+  <h1>{{ user.username }}의 페이지</h1>
+  <p>first-name :
+    {{ user.last_name }}</p>
+  <p>last-name :
+    {{ user.first_name }}</p>
+  <p>e-mail :
+    {{ user.email }}</p>
 
 {% endblock content %}
