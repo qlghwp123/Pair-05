@@ -33,8 +33,8 @@ class Review(models.Model):
     )
 
 
-# class comment(models.Model):
-#     content = models.TextField(max_length=300, blank=False)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     review = models.Foreignkey(Review, on_delet=models.CASCADE)
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+class Comment(models.Model):
+    content = models.TextField(max_length=300, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
