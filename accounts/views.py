@@ -27,6 +27,13 @@ def signup(request):
     }
     return render(request, "accounts/signup.html", context)
 
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect(request.GET.get("next") or "reviews:index")
+
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
 
