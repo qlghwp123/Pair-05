@@ -14,7 +14,7 @@ def index(request):
     context = {
         "users": users,
     }
-    return render(request, "reviews/index.html", context)
+    return render(request, "accounts/index.html", context)
 
 
 def signup(request):
