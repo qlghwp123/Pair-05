@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">번호</th>
-        <th scope="col">아이디</th>
-        <th scope="col">이메일</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-        <tr>
-          <td>
-            {{ user.pk }}
-          </td>
-          <td>
-            <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
-          </td>
-          <td>{{ user.email }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">아이디</th>
+      <th scope="col">이메일</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>
+        {{ user.pk }}
+      </td>
+      <td>
+        <a class="title_link" href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
+      </td>
+      <td>{{ user.email }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock content %}
