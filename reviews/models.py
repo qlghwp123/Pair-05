@@ -23,9 +23,9 @@ class Review(models.Model):
     image = ProcessedImageField(
         upload_to="images/",
         blank=True,
-        processors=[ResizeToFill(1200, 960)],
+        processors=[ResizeToFill(900, 1200)],
         format="JPEG",
-        options={"quality": 80},
+        options={"quality": 90},
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     like_users = models.ManyToManyField(
