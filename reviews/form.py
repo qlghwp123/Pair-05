@@ -11,9 +11,14 @@ class ReviewForm(forms.ModelForm):
             "content",
             "movie_name",
             "grade",
+            "image",
         ]
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ('review', 'user', )
+        exclude = (
+            "review",
+            "user",
+        )
