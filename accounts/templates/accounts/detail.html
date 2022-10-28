@@ -4,32 +4,65 @@
 
 {% block content %}
 
-  <h1>{{ user.username }}의 프로필</h1>
-  <p>팔로우 :
-    {{ user.followings.count }}
-    | 팔로워 :
-    {{ user.followers.count }}</p>
-
-  {% if request.user.is_authenticated %}
-    {% if request.user != user %}
-      <a href="{% url 'accounts:follow' user.pk %}">
-        {% if request.user in user.followers.all %}
-          <p class="btn btn-outline-danger">팔로우 취소</p>
-        {% else %}
-          <p class="btn btn-outline-success">팔로우</p>
-        {% endif %}
-      </a>
-    {% endif %}
+{% if request.user.is_authenticated %}
+{% if request.user != user %}
+<a class="fs-3" href="{% url 'accounts:follow' user.pk %}">
+  {% if request.user in user.followers.all %}
+  <i style="color:black;" class="bi bi-person-check-fill"></i>
   {% else %}
-    <a class="my-3 btn btn-outline-secondary" href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+  <i style="color:black;" class="bi bi-person-plus-fill"></i>
   {% endif %}
-  <p>성 :
+</a>
+{% endif %}
+{% else %}
+<a class="my-3 btn btn-outline-secondary" href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
+{% endif %}
+
+<h3 class="fw-bold">{{ user.username }}의 프로필</h3>
+<p class="m-0"><i class="bi bi-people-fill"></i>
+  팔로잉 :
+  {{ user.followings.count }}
+  | 팔로워 :
+  {{ user.followers.count }}</p>
+<div class="py-3">
+  <p><i class="bi bi-github"></i> github :
     {{ user.last_name }}</p>
-  <p>이름 :
+  <p><i class="bi bi-instagram"></i> instagram :
     {{ user.first_name }}</p>
-  <p>이메일 :
+  <p><i class="bi bi-envelope-fill"></i> email:
     {{ user.email }}</p>
 
-  <a class="btn btn-primary" href="{% url 'accounts:update' %}">수정</a>
+  <div class="row">
+    <div class="col-sm-12 py-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="bi bi-pencil-square"></i> 작성 글</h5>
+          <p class="card-text">{% for review in reviews %}
+          <p><a class="title_link" href="{% url 'reviews:detail' review.pk %}"> {{ review.title }} </a></p>
+          <hr class="m-0">
+          {% empty %}
+          <p>작성글이 없습니다.</p>
+          {% endfor %}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 py-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i style="color:red;" class="hart bi bi-heart-fill"></i> 좋아요</h5>
+          <p class="card-text">{% for review in user.like_reviews.all %}
+          <p><a class="title_link" href="{% url 'reviews:detail' review.pk %}"> {{ review.title }} </a></p>
+          <hr class="m-0">
+          {% empty %}
+          <p>글이 없습니다.</p>
+          {% endfor %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if request.user == user %}
+  <a class="float-end btn btn-outline-dark my-3" href="{% url 'accounts:update' %}">수정</a>
+  {% endif %}
+</div>
 
 {% endblock %}
