@@ -23,11 +23,13 @@
   {% else %}
     <a class="my-3 btn btn-outline-secondary" href="{% url 'accounts:login' %}">로그인이 필요합니다</a>
   {% endif %}
-  <p>first-name :
+  <p>성 :
     {{ user.last_name }}</p>
-  <p>last-name :
+  <p>이름 :
     {{ user.first_name }}</p>
-  <p>e-mail :
+  <p>이메일 :
     {{ user.email }}</p>
+
+  <a class="btn btn-primary" href="{% url 'accounts:update' %}">수정</a>
 
 {% endblock %}
