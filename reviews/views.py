@@ -5,11 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 # Create your views here.
-@login_required
 def index(request):
     reviews = Review.objects.order_by("pk")
     page = request.GET.get('page')
-    paginator = Paginator(reviews, '5')
+    paginator = Paginator(reviews, '6')
     posts = paginator.get_page(page)
     context = {
         'reviews': reviews,
